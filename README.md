@@ -1,6 +1,6 @@
 # TSA-2020
 TSA Game Design 2020
 
-Using Unity 2019.2.8 
+Using Newest Unity Release
 
 Dont push w/ other versions
