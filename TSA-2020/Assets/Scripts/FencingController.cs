@@ -13,6 +13,7 @@ public class FencingController : MonoBehaviour
     public KeyCode right;
     public KeyCode hold;
     public KeyCode inch;
+    private float multiplier = 0f;
 
     public Transform tf; 
     private int currentAction = 0; 
@@ -44,6 +45,42 @@ public class FencingController : MonoBehaviour
         if(lagTime <= 0) {
             lagTime = 0;
         }
+               if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(new Vector2(Time.deltaTime * movementSpeed, 0f));
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Translate(new Vector2(-Time.deltaTime * movementSpeed, 0f));
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            if (grounded == true)
+            {
+                multiplier += 10f;
+                grounded = false;
+            }
+
+
+        }
+        if (grounded == false)
+        {
+            if (tf.position.y + Time.deltaTime * (float)multiplier >= -3.25f)
+            {
+
+                transform.Translate(new Vector2(0f, Time.deltaTime * (float)multiplier));
+                multiplier -= 0.3f;
+            }else
+            {
+                grounded = true;
+                multiplier = 1f;
+ 
+                tf.Translate(new Vector2(0f, -3.25f - tf.position.y));
+            }
+        }
+
+
+   
         
     }
 
